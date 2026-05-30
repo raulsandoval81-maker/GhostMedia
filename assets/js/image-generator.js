@@ -1,9 +1,12 @@
-const payload = JSON.parse(localStorage.getItem("ghost-image-payload") || "{}");
+const payload = JSON.parse(
+  localStorage.getItem("ghost-image-payload") || "{}"
+);
 
 const titleInput = document.getElementById("title");
 const bodyInput = document.getElementById("body");
 const preview = document.getElementById("preview");
 const generateBtn = document.getElementById("generateBtn");
+const downloadBtn = document.getElementById("downloadBtn");
 
 titleInput.value = payload.title || "";
 bodyInput.value = payload.body || "";
@@ -30,41 +33,38 @@ function renderPreview() {
   `;
 }
 
-generateBtn.addEventListener("click", renderPreview);
-renderPreview();
-const downloadBtn =
-  document.getElementById("downloadBtn");
+if (generateBtn) {
+  generateBtn.addEventListener("click", renderPreview);
+}
 
-downloadBtn.addEventListener(
-  "click",
-  async () => {
-
-    const slide =
-      document.querySelector(
-        ".slide-preview"
-      );
+if (downloadBtn) {
+  downloadBtn.addEventListener("click", async () => {
+    const slide = document.querySelector(".slide-preview");
 
     if (!slide) {
       alert("Generate preview first.");
       return;
     }
 
-    const canvas =
-      await html2canvas(slide, {
-        scale: 2,
-        backgroundColor: null
-      });
+    if (typeof html2canvas === "undefined") {
+      alert("Download tool not loaded yet. Refresh and try again.");
+      return;
+    }
 
-    const link =
-      document.createElement("a");
+    const canvas = await html2canvas(slide, {
+      scale: 2,
+      backgroundColor: null
+    });
 
-    link.download =
-      `${titleInput.value || "ghost-loop-slide"}.png`;
+    const link = document.createElement("a");
 
-    link.href =
-      canvas.toDataURL("image/png");
+    link.download = `${
+      titleInput.value.trim() || "ghost-loop-slide"
+    }.png`;
 
+    link.href = canvas.toDataURL("image/png");
     link.click();
+  });
+}
 
-  }
-);
+renderPreview();
