@@ -42,7 +42,10 @@ function renderWinners() {
 
 function markWinner(id) {
   gmUpdateIdeaStatus(id, "WINNER");
+
   renderWinners();
+
+  window.location.href = "/dashboard/patterns.html";
 }
 
 renderWinners();

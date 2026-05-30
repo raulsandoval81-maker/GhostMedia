@@ -48,6 +48,8 @@ saveIdeaBtn.addEventListener("click", () => {
   ideaNotes.value = "";
 
   renderIdeas();
+
+  window.location.href = "/dashboard/content.html";
 });
 
 renderIdeas();
