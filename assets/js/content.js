@@ -86,7 +86,11 @@ queueContentBtn.addEventListener("click", () => {
 
   localStorage.setItem("ghostmedia-queue", JSON.stringify(queue));
 
-  alert("Content added to queue.");
+
+
+
+
+window.location.href = "/dashboard/queue.html";
 });
 
 loadIdeasIntoSelect();
