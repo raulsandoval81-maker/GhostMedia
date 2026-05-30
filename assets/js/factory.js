@@ -20,7 +20,20 @@ function loadFactoryWinners() {
 function generateVariations(winner) {
   if (!winner) return [];
 
-  if (winner.page === "Youth Sports Parents") {
+  const page = winner.page || "General";
+  const title = winner.title || "Winning Idea";
+  const notes = winner.notes || "";
+
+  const text = `${title} ${page} ${notes}`.toLowerCase();
+
+  // Parenting Pattern
+
+  if (
+    page === "Youth Sports Parents" ||
+    text.includes("parent") ||
+    text.includes("dad") ||
+    text.includes("mom")
+  ) {
     return [
       "Parents Who Think Their Kid Is Going D1 At Age 8",
       "The Ride Home After A Tough Loss",
@@ -35,12 +48,107 @@ function generateVariations(winner) {
     ];
   }
 
+  // Wrestling History Pattern
+
+  if (
+    page === "Wrestling History" ||
+    text.includes("weight cut") ||
+    text.includes("bad weight") ||
+    text.includes("history") ||
+    text.includes("old school")
+  ) {
+    return [
+      "The Worst Weight Cut I Ever Saw",
+      "How We Used To Cut Weight Before Hydration Tests",
+      "The Night Before Weigh Ins Used To Be Chaos",
+      "Every Old Wrestler Has A Weight Cut Story",
+      "The Dumbest Weight Cutting Trick Ever",
+      "Why Wrestling Finally Changed The Rules",
+      "Cutting Weight In The 90s Was Different",
+      "Things Coaches Allowed Back Then",
+      "The Most Miserable Bus Ride After A Cut",
+      "What Young Wrestlers Will Never Experience"
+    ];
+  }
+
+  // MMA Drama Pattern
+
+  if (
+    page === "MMA Drama" ||
+    text.includes("mma") ||
+    text.includes("fight") ||
+    text.includes("drama")
+  ) {
+    return [
+      "The Fight Everyone Saw Differently",
+      "When The Corner Made It Worse",
+      "The Moment The Crowd Turned",
+      "Why Fighters Need Better Corners",
+      "The Dumbest Fight IQ Moment Ever",
+      "When Ego Cost The Match",
+      "The Post Fight Excuse Nobody Believed",
+      "The Coach Who Lost Control",
+      "The Round That Changed Everything",
+      "What Casual Fans Missed"
+    ];
+  }
+
+  // Wrestling Highlights Pattern
+
+  if (
+    page === "Wrestling Highlights" ||
+    text.includes("highlight") ||
+    text.includes("pin") ||
+    text.includes("wrestling")
+  ) {
+    return [
+      "The Craziest Pin I've Ever Seen",
+      "The Match Nobody Expected To Matter",
+      "One Move Changed Everything",
+      "The Crowd Went Silent After This",
+      "The Sequence Coaches Replay",
+      "The Best Scramble Of The Year",
+      "How This Match Turned Around",
+      "The Moment Momentum Shifted",
+      "The Finish Everyone Missed",
+      "Why This Highlight Matters"
+    ];
+  }
+
+  // Underdog Pattern
+
+  if (
+    text.includes("underdog") ||
+    text.includes("upset") ||
+    text.includes("nobody expected")
+  ) {
+    return [
+      "Nobody Thought They Could Win",
+      "The Biggest Surprise Of The Season",
+      "How The Underdog Pulled It Off",
+      "The Match That Changed Everything",
+      "Why This Story Resonates",
+      "The Moment Belief Changed",
+      "What People Got Wrong",
+      "The Quiet Athlete Nobody Saw Coming",
+      "The Upset Nobody Predicted",
+      "Proof Hard Work Still Wins"
+    ];
+  }
+
+  // Generic Fallback
+
   return [
-    `${winner.title} Part 2`,
-    `The Story Behind ${winner.title}`,
-    `Why ${winner.title} Went Viral`,
-    `${winner.title} But Even Wilder`,
-    `What Everyone Missed About ${winner.title}`
+    `The Hidden Lesson Behind ${title}`,
+    `Why ${title} Hit A Nerve`,
+    `The Part Nobody Talks About`,
+    `What Coaches Notice First`,
+    `The Story Under The Story`,
+    `Why This Keeps Happening`,
+    `The Mistake Everyone Misses`,
+    `What This Says About The Sport`,
+    `The Moment People React To`,
+    `The Follow-Up Nobody Asked For`
   ];
 }
 
