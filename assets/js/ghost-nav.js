@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <a href="/dashboard/index.html">🏠 Dashboard</a>
         <a href="/dashboard/lab.html">🧪 Winner Lab</a>
         <a href="/dashboard/planner.html">📅 Planner</a>
+          <a href="/dashboard/image-generator.html">🎨 Image Generator</a>
       </div>
 
     </section>
