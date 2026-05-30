@@ -3,9 +3,12 @@ const opportunityList =
 
 function renderOpportunities() {
 
-  const patterns =
-    getPatterns();
-
+    const patterns =
+  JSON.parse(
+    localStorage.getItem(
+      "ghostmedia-patterns"
+    ) || "[]"
+  );
   const totals = {};
 
   patterns.forEach((pattern) => {
