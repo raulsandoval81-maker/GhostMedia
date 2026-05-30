@@ -15,9 +15,19 @@ function renderWinners() {
       row.innerHTML = `
         <div>
           <strong>${idea.title}</strong>
-          <div class="idea-note">${idea.page}</div>
+          <div class="idea-note">${idea.page || "General"}</div>
+
+          <div class="results-grid">
+            <input id="views-${idea.id}" type="number" placeholder="Views" value="${idea.views || ""}">
+            <input id="likes-${idea.id}" type="number" placeholder="Likes" value="${idea.likes || ""}">
+            <input id="comments-${idea.id}" type="number" placeholder="Comments" value="${idea.comments || ""}">
+            <input id="shares-${idea.id}" type="number" placeholder="Shares" value="${idea.shares || ""}">
+          </div>
         </div>
-        <button onclick="markWinner('${idea.id}')">Winner</button>
+
+        <button onclick="markWinner('${idea.id}')">
+          Mark Winner
+        </button>
       `;
 
       postedList.appendChild(row);
@@ -30,7 +40,13 @@ function renderWinners() {
       row.innerHTML = `
         <div>
           <strong>🏆 ${idea.title}</strong>
-          <div class="idea-note">${idea.page}</div>
+          <div class="idea-note">${idea.page || "General"}</div>
+          <div class="idea-note">
+            Views: ${idea.views || 0} ·
+            Likes: ${idea.likes || 0} ·
+            Comments: ${idea.comments || 0} ·
+            Shares: ${idea.shares || 0}
+          </div>
         </div>
         <span>WINNER</span>
       `;
@@ -40,8 +56,21 @@ function renderWinners() {
   });
 }
 
+function getMetric(id, metric) {
+  const el = document.getElementById(`${metric}-${id}`);
+  return Number(el?.value || 0);
+}
+
 function markWinner(id) {
-  gmUpdateIdeaStatus(id, "WINNER");
+  const metrics = {
+    views: getMetric(id, "views"),
+    likes: getMetric(id, "likes"),
+    comments: getMetric(id, "comments"),
+    shares: getMetric(id, "shares"),
+    resultLoggedAt: new Date().toISOString()
+  };
+
+  gmUpdateIdeaStatus(id, "WINNER", metrics);
 
   renderWinners();
 
