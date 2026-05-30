@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Ghost Loop Image Generator</title>
+
+  <link rel="stylesheet" href="/assets/css/site.css" />
+  <link rel="stylesheet" href="/assets/css/image-generator.css" />
+</head>
+
+<body>
+
+  <main class="wrap image-gen-wrap">
+
+    <h1>🎨 Ghost Loop Image Generator</h1>
+
+    <section class="card image-gen-panel">
+      <label>Title</label>
+      <input id="title" type="text" placeholder="Slide title" />
+
+      <label>Body</label>
+      <textarea id="body" placeholder="Slide body"></textarea>
+
+      <button id="generateBtn">Generate Preview</button>
+    </section>
+
+    <section class="card">
+      <h2>Preview</h2>
+      <div id="preview"></div>
+    </section>
+
+  </main>
+
+  <script src="/assets/js/image-generator.js"></script>
+
+</body>
+</html>
