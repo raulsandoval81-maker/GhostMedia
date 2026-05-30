@@ -38,7 +38,7 @@ function gmUpdateIdeaStatus(id, status, extra = {}) {
 }
 
 function gmRebuildPatterns() {
-  const winners = gmGetByStatus("winner");
+  const winners = gmGetByStatus("WINNER");
 
   const patterns = winners.map(winner => ({
     id: winner.id,

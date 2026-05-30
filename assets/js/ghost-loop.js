@@ -29,7 +29,7 @@ function gmAddIdea(data) {
     hook: data.hook || "",
     emotion: data.emotion || "",
     cta: data.cta || "",
-    status: "idea",
+    status: "NEW",
     views: 0,
     likes: 0,
     comments: 0,
@@ -52,7 +52,7 @@ function gmUpdateStatus(id, status, extra = {}) {
 }
 
 function gmRebuildPatterns() {
-  const winners = gmIdeas().filter(item => item.status === "winner");
+  const winners = gmIdeas().filter(item => item.status === "WINNER");
 
   const patterns = winners.map(winner => ({
     id: crypto.randomUUID(),

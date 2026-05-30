@@ -38,7 +38,7 @@ function rebuildPatternEngine() {
   const ideas = getIdeas();
 
   const winners = ideas.filter(item =>
-    item.status === "winner"
+    item.status === "WINNER"
   );
 
   const patterns = winners.map(createPatternFromWinner);

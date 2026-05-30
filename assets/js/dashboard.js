@@ -2,13 +2,13 @@ const ideas = gmIdeas();
 const patterns = gmRebuildPatterns();
 const bestPattern = gmBestPattern();
 
-const winners = ideas.filter(i => i.status === "winner");
+const winners = ideas.filter(i => i.status === "WINNER");
 
 document.getElementById("ideaCount").textContent =
-  ideas.filter(i => i.status === "idea").length;
+  ideas.filter(i => i.status === "NEW").length;
 
 document.getElementById("queueCount").textContent =
-  ideas.filter(i => i.status === "queued").length;
+  ideas.filter(i => i.status === "QUEUED").length;
 
 document.getElementById("winnerCount").textContent =
   winners.length;
