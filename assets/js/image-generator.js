@@ -1,43 +1,41 @@
-const payload =
-  JSON.parse(
-    localStorage.getItem(
-      "ghost-image-payload"
-    ) || "{}"
-  );
+const payload = JSON.parse(localStorage.getItem("ghost-image-payload") || "{}");
 
-const titleInput =
-  document.getElementById("title");
+const titleInput = document.getElementById("title");
+const bodyInput = document.getElementById("body");
+const preview = document.getElementById("preview");
+const generateBtn = document.getElementById("generateBtn");
 
-const bodyInput =
-  document.getElementById("body");
+titleInput.value = payload.title || "";
+bodyInput.value = payload.body || "";
 
-const preview =
-  document.getElementById("preview");
+function renderPreview() {
+  const title = titleInput.value.trim() || "Ghost Loop Slide";
+  const body = bodyInput.value.trim();
 
-if (payload.title) {
-  titleInput.value = payload.title;
-}
+  preview.innerHTML = `
+    <div class="slide-preview">
+      <div class="slide-badge">1/5</div>
 
-if (payload.body) {
-  bodyInput.value = payload.body;
-}
-
-document
-  .getElementById("generateBtn")
-  .addEventListener("click", () => {
-
-    preview.innerHTML = `
-      <div class="slide-preview">
-
-        <h1>
-          ${titleInput.value}
-        </h1>
-
-        <p>
-          ${bodyInput.value}
-        </p>
-
+      <div class="slide-main">
+        <h1>${title}</h1>
+        ${body ? `<p>${body}</p>` : ""}
       </div>
-    `;
 
-  });
+      <div class="slide-footer">
+        <div class="ghost">👻</div>
+        <strong>GHOST LOOP HQ</strong>
+        <span>SIGNALS. PATTERNS. STORIES.</span>
+      </div>
+    </div>
+    
+<div class="slide-footer">
+  <div class="ghost">👻</div>
+  <strong>GHOST LOOP HQ</strong>
+  <span>SIGNALS • PATTERNS • STORIES</span>
+</div>
+
+  `;
+}
+
+generateBtn.addEventListener("click", renderPreview);
+renderPreview();

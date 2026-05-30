@@ -83,3 +83,12 @@
   font-size:12px;
   letter-spacing:2px;
 }
+.slide-main h1{
+  font-size:72px;
+  line-height:.9;
+  font-weight:900;
+  text-transform:uppercase;
+}
+.slide-preview{
+  justify-content:center;
+}
