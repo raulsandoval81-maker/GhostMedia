@@ -256,6 +256,10 @@ saveFactoryBtn.addEventListener("click", () => {
   window.location.href = "/dashboard/ideas.html";
 });
 
+const generateCarouselBtn =
+  document.getElementById(
+    "generateCarouselBtn"
+  );
 
 generateCarouselBtn?.addEventListener(
   "click",
@@ -304,43 +308,10 @@ generateCarouselBtn?.addEventListener(
 
       })
     );
-
-    alert(
-      "Carousel payload created."
-    );
+window.location.href =
+  "/carousel/";
 
   }
 );
-const generateCarouselBtn =
-  document.getElementById("generateCarouselBtn");
 
-generateCarouselBtn?.addEventListener("click", () => {
-  const winners = getWinners();
-  const selectedId = factoryWinner.value;
-
-  const winner = winners.find(
-    (w) => String(w.id) === String(selectedId)
-  );
-
-  if (!winner) {
-    alert("Select a winner first.");
-    return;
-  }
-
-  const title = winner.title || "Winning Idea";
-
-  localStorage.setItem(
-    "ghost-carousel-payload",
-    JSON.stringify({
-      slide1: title,
-      slide2: "Most people miss this.",
-      slide3: "Here's what actually happens.",
-      slide4: "The lesson is simpler than people think.",
-      slide5: "What do you think?",
-      createdAt: new Date().toISOString()
-    })
-  );
-
-  window.location.href = "/carousel/";
-});
 loadFactoryWinners();
