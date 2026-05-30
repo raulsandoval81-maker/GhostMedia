@@ -3,28 +3,40 @@ const opportunityList =
 
 function renderOpportunities() {
 
-  const patterns = [
-    {
-      name: "Parenting + Humor",
-      score: 92
-    },
-    {
-      name: "Underdog Stories",
-      score: 80
-    },
-    {
-      name: "Wrestling Technique",
-      score: 70
-    },
-    {
-      name: "MMA Drama",
-      score: 55
-    }
-  ];
+  const patterns =
+    getPatterns();
+
+  const totals = {};
+
+  patterns.forEach((pattern) => {
+
+    const key =
+      pattern.topic ||
+      "General";
+
+    totals[key] =
+      (totals[key] || 0) + 1;
+
+  });
+
+  const opportunities =
+    Object.entries(totals)
+      .map(([name, count]) => ({
+        name,
+        score: Math.min(
+          count * 20,
+          100
+        ),
+        winners: count
+      }))
+      .sort(
+        (a, b) =>
+          b.score - a.score
+      );
 
   opportunityList.innerHTML = "";
 
-  patterns.forEach(pattern => {
+  opportunities.forEach((opportunity) => {
 
     const row =
       document.createElement("div");
@@ -33,9 +45,18 @@ function renderOpportunities() {
 
     row.innerHTML = `
       <div>
-        <strong>${pattern.name}</strong>
+        <strong>
+          ${opportunity.name}
+        </strong>
+
         <div class="idea-note">
-          Opportunity Score: ${pattern.score}
+          Opportunity Score:
+          ${opportunity.score}
+        </div>
+
+        <div class="idea-note">
+          Winners:
+          ${opportunity.winners}
         </div>
       </div>
     `;
@@ -43,6 +64,22 @@ function renderOpportunities() {
     opportunityList.appendChild(row);
 
   });
+
+  if (!opportunities.length) {
+
+    opportunityList.innerHTML = `
+      <div class="page">
+        <strong>
+          No opportunities yet.
+        </strong>
+
+        <span>
+          Mark winners first.
+        </span>
+      </div>
+    `;
+
+  }
 
 }
 
