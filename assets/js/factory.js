@@ -182,10 +182,11 @@ function renderFactoryOutput() {
             createdAt: new Date().toISOString()
           })
         );
+window.location.href =
+  "/image-generator/";
 
-        window.location.href =
-          "/dashboard/image-generator.html";
-      });
+
+    });
 
     factoryOutput.appendChild(row);
   });
