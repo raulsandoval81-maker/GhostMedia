@@ -161,8 +161,31 @@ function renderFactoryOutput() {
 
     row.innerHTML = `
       <strong>${title}</strong>
+
       <span>VARIATION</span>
+
+      <button class="build-image-btn">
+        🎨 Build Images
+      </button>
     `;
+
+    row
+      .querySelector(".build-image-btn")
+      .addEventListener("click", () => {
+
+        localStorage.setItem(
+          "ghost-image-payload",
+          JSON.stringify({
+            title,
+            theme: "Ghost Loop",
+            size: "1080x1350",
+            createdAt: new Date().toISOString()
+          })
+        );
+
+        window.location.href =
+          "/image-generator/";
+      });
 
     factoryOutput.appendChild(row);
   });
