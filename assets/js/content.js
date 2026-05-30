@@ -1,9 +1,12 @@
 const ideaSelect = document.getElementById("ideaSelect");
 const generateContentBtn = document.getElementById("generateContentBtn");
+const queueContentBtn = document.getElementById("queueContentBtn");
 
 const hookOutput = document.getElementById("hookOutput");
 const captionOutput = document.getElementById("captionOutput");
 const hashtagsOutput = document.getElementById("hashtagsOutput");
+
+let currentContent = null;
 
 function loadIdeasIntoSelect() {
   const ideas = gmGetIdeas();
@@ -20,15 +23,18 @@ function loadIdeasIntoSelect() {
 
 function buildContent(idea) {
   return {
+    ideaId: idea.id,
+    title: idea.title,
+    page: idea.page,
     hook: `This one gets people talking: ${idea.title}`,
-
     caption: `${idea.title}
 
 ${idea.notes || "A simple post built from a strong idea."}
 
 What do you think?`,
-
-    hashtags: getHashtags(idea.page)
+    hashtags: getHashtags(idea.page),
+    status: "ready",
+    createdAt: new Date().toISOString()
   };
 }
 
@@ -52,16 +58,35 @@ function getHashtags(page) {
 generateContentBtn.addEventListener("click", () => {
   const ideas = gmGetIdeas();
   const selectedId = Number(ideaSelect.value);
-
   const idea = ideas.find((item) => Number(item.id) === selectedId);
 
   if (!idea) return;
 
-  const content = buildContent(idea);
+  currentContent = buildContent(idea);
 
-  hookOutput.textContent = content.hook;
-  captionOutput.textContent = content.caption;
-  hashtagsOutput.textContent = content.hashtags;
+  hookOutput.textContent = currentContent.hook;
+  captionOutput.textContent = currentContent.caption;
+  hashtagsOutput.textContent = currentContent.hashtags;
+});
+
+queueContentBtn.addEventListener("click", () => {
+  if (!currentContent) {
+    alert("Generate content first.");
+    return;
+  }
+
+  const queue = JSON.parse(localStorage.getItem("ghostmedia-queue") || "[]");
+
+  queue.push({
+    ...currentContent,
+    id: Date.now(),
+    status: "queued",
+    queuedAt: new Date().toISOString()
+  });
+
+  localStorage.setItem("ghostmedia-queue", JSON.stringify(queue));
+
+  alert("Content added to queue.");
 });
 
 loadIdeasIntoSelect();
