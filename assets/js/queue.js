@@ -61,3 +61,5 @@ function moveIdea(id, status) {
 
   renderQueue();
 }
+
+renderQueue();
