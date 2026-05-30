@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ghost Ideas</title>
+<title>Idea Factory</title>
 <link rel="stylesheet" href="../assets/css/site.css">
 </head>
 
@@ -11,18 +11,18 @@
 
 <div class="wrap">
 
-  <h1>💡 Ideas Vault</h1>
+  <h1>⚙️ Idea Factory</h1>
 
   <div class="nav">
     <a href="index.html">Dashboard</a>
+    <a href="ideas.html">Ideas</a>
     <a href="analytics.html">Analytics</a>
     <a href="winners.html">Winners</a>
   </div>
 
   <div class="card form-card">
-    <input id="ideaTitle" placeholder="Idea title">
-    
-    <select id="ideaPage">
+
+    <select id="factoryPage">
       <option>Wrestling Highlights</option>
       <option>Wrestling History</option>
       <option>MMA Moments</option>
@@ -35,17 +35,17 @@
       <option>Underdog Stories</option>
     </select>
 
-    <textarea id="ideaNotes" placeholder="Notes, hook, angle, clip idea..."></textarea>
+    <button id="generateBtn">Generate Ideas</button>
+    <button id="saveAllBtn">Save All Ideas</button>
 
-    <button id="saveIdeaBtn">Save Idea</button>
   </div>
 
-  <div id="ideasList" class="pages"></div>
+  <div id="factoryList" class="pages"></div>
 
 </div>
 
 <script src="../assets/js/storage.js"></script>
-<script src="../assets/js/ideas.js"></script>
+<script src="../assets/js/idea-generator.js"></script>
 
 </body>
 </html>

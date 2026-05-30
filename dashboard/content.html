@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Generator</title>
+
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <h1>📝 Content Generator</h1>
+
+  <div class="nav">
+    <a href="index.html">Dashboard</a>
+    <a href="ideas.html">Ideas</a>
+    <a href="generator.html">Idea Factory</a>
+    <a href="analytics.html">Analytics</a>
+    <a href="winners.html">Winners</a>
+  </div>
+
+  <div class="card form-card">
+
+    <label>Select Idea</label>
+
+    <select id="ideaSelect"></select>
+
+    <button id="generateContentBtn">
+      Generate Content
+    </button>
+
+  </div>
+
+  <div class="card">
+
+    <h2>Hook</h2>
+
+    <p id="hookOutput">
+      Select an idea and generate content.
+    </p>
+
+  </div>
+
+  <div class="card">
+
+    <h2>Caption</h2>
+
+    <p id="captionOutput">
+      Waiting...
+    </p>
+
+  </div>
+
+  <div class="card">
+
+    <h2>Hashtags</h2>
+
+    <p id="hashtagsOutput">
+      Waiting...
+    </p>
+
+  </div>
+
+</div>
+
+<script src="../assets/js/storage.js"></script>
+<script src="../assets/js/content.js"></script>
+
+</body>
+</html>
