@@ -27,15 +27,44 @@ function renderPreview() {
         <span>SIGNALS. PATTERNS. STORIES.</span>
       </div>
     </div>
-    
-<div class="slide-footer">
-  <div class="ghost">👻</div>
-  <strong>GHOST LOOP HQ</strong>
-  <span>SIGNALS • PATTERNS • STORIES</span>
-</div>
-
   `;
 }
 
 generateBtn.addEventListener("click", renderPreview);
 renderPreview();
+const downloadBtn =
+  document.getElementById("downloadBtn");
+
+downloadBtn.addEventListener(
+  "click",
+  async () => {
+
+    const slide =
+      document.querySelector(
+        ".slide-preview"
+      );
+
+    if (!slide) {
+      alert("Generate preview first.");
+      return;
+    }
+
+    const canvas =
+      await html2canvas(slide, {
+        scale: 2,
+        backgroundColor: null
+      });
+
+    const link =
+      document.createElement("a");
+
+    link.download =
+      `${titleInput.value || "ghost-loop-slide"}.png`;
+
+    link.href =
+      canvas.toDataURL("image/png");
+
+    link.click();
+
+  }
+);
