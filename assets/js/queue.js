@@ -53,7 +53,11 @@ function renderQueue() {
 
 function moveIdea(id, status) {
   gmUpdateIdeaStatus(id, status);
+
+  if (status === "POSTED") {
+    window.location.href = "/dashboard/winners.html";
+    return;
+  }
+
   renderQueue();
 }
-
-renderQueue();
