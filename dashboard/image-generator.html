@@ -1,19 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Ghost Loop Image Generator</title>
+
+  <link rel="stylesheet" href="/assets/css/site.css" />
+  <link rel="stylesheet" href="/assets/css/image-generator.css" />
 </head>
+
 <body>
 
-<h1>🎨 Ghost Loop Image Generator</h1>
+  <main class="wrap">
 
-<p>
-Create Instagram-ready 4:5 slides.
-</p>
+    <h1>🎨 Ghost Loop Image Generator</h1>
 
-<button>
-Generate Slide
-</button>
+    <p>
+      Create Instagram-ready 4:5 slides.
+    </p>
+
+    <section class="card form-card">
+
+      <label for="title">Title</label>
+      <input id="title" type="text" />
+
+      <label for="body">Body</label>
+      <textarea id="body"></textarea>
+
+      <button id="generateBtn">
+        Generate Preview
+      </button>
+
+    </section>
+
+    <section class="card">
+      <h2>Preview</h2>
+      <div id="preview"></div>
+    </section>
+
+  </main>
+
+  <script src="/assets/js/image-generator.js"></script>
 
 </body>
 </html>

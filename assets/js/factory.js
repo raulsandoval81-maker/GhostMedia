@@ -184,7 +184,7 @@ function renderFactoryOutput() {
         );
 
         window.location.href =
-          "/image-generator/";
+          "/dashboard/image-generator.html";
       });
 
     factoryOutput.appendChild(row);
