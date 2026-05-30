@@ -38,7 +38,7 @@ saveIdeaBtn.addEventListener("click", () => {
     title,
     page: ideaPage.value,
     notes: ideaNotes.value.trim(),
-    status: "NEW",
+    status: "idea",
     createdAt: new Date().toISOString()
   });
 

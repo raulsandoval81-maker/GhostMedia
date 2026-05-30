@@ -1,33 +1,14 @@
-const ideas =
-  JSON.parse(
-    localStorage.getItem("ideas") || "[]"
-  );
+const ideas = gmIdeas();
+const patterns = gmRebuildPatterns();
+const bestPattern = gmBestPattern();
 
-const queued =
-  JSON.parse(
-    localStorage.getItem("queued") || "[]"
-  );
-
-const winners =
-  JSON.parse(
-    localStorage.getItem("winners") || "[]"
-  );
-
-const patterns =
-  JSON.parse(
-    localStorage.getItem("patterns") || "[]"
-  );
-
-const opportunities =
-  JSON.parse(
-    localStorage.getItem("opportunities") || "[]"
-  );
+const winners = ideas.filter(i => i.status === "winner");
 
 document.getElementById("ideaCount").textContent =
-  ideas.length;
+  ideas.filter(i => i.status === "idea").length;
 
 document.getElementById("queueCount").textContent =
-  queued.length;
+  ideas.filter(i => i.status === "queued").length;
 
 document.getElementById("winnerCount").textContent =
   winners.length;
@@ -36,23 +17,24 @@ document.getElementById("patternCount").textContent =
   patterns.length;
 
 if (winners.length) {
+  const topWinner = [...winners].sort(
+    (a, b) => Number(b.views || 0) - Number(a.views || 0)
+  )[0];
 
   document.getElementById("topWinner").textContent =
-    winners[0].title || "Winner Found";
-
+    topWinner.title || "Winner Found";
+} else {
+  document.getElementById("topWinner").textContent =
+    "No winner selected";
 }
 
-if (patterns.length) {
+document.getElementById("topPattern").textContent =
+  bestPattern
+    ? `${bestPattern.label} (${bestPattern.count}x)`
+    : "No pattern detected";
 
-  document.getElementById("topPattern").textContent =
-    patterns[0].pattern || patterns[0].name;
+document.getElementById("topOpportunity").textContent =
+  "No opportunity detected";
 
-}
-
-if (opportunities.length) {
-
-  document.getElementById("topOpportunity").textContent =
-    opportunities[0].name ||
-    opportunities[0].pattern;
-
-}
+document.getElementById("weekPlan").textContent =
+  "Planner not built yet";
