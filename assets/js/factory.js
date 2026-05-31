@@ -164,27 +164,42 @@ function renderFactoryOutput() {
 
       <span>VARIATION</span>
 
-      <button class="build-image-btn">
-        🎨 Build Images
-      </button>
-    `;
+<button class="build-carousel-btn">
+  📚 Build Carousel
+</button>
+
+      `;
 
     row
-      .querySelector(".build-image-btn")
+    .querySelector(".build-carousel-btn")
       .addEventListener("click", () => {
 
-        localStorage.setItem(
-          "ghost-image-payload",
-          JSON.stringify({
-            title,
-            theme: "Ghost Loop",
-            size: "1080x1350",
-            createdAt: new Date().toISOString()
-          })
-        );
-window.location.href =
-  "/image-generator/";
+localStorage.setItem(
+  "ghost-carousel-payload",
+  JSON.stringify({
 
+    slide1: title,
+
+    slide2:
+      "Most people miss this.",
+
+    slide3:
+      "Here's what actually happens.",
+
+    slide4:
+      "The lesson is simpler than people think.",
+
+    slide5:
+      "What do you think?",
+
+    createdAt:
+      new Date().toISOString()
+
+  })
+);
+
+window.location.href =
+  "/carousel/";
 
     });
 
