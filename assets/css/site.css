@@ -540,3 +540,21 @@ button{
 .wrap {
   padding: 24px;
 }
+
+/* Shared nav stretch fix only */
+#ghostNav {
+  width: 100%;
+  max-width: 1100px;
+  margin: 24px auto 32px;
+}
+
+.ghost-command {
+  width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.ghost-column,
+.ghost-column a {
+  width: 100%;
+  box-sizing: border-box;
+}
