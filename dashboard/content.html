@@ -1,74 +1,92 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Content Generator</title>
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="/assets/css/site.css">
+<title>Content Builder</title>
+
+<link
+  rel="stylesheet"
+  href="/assets/css/site.css">
 </head>
 
 <body>
 
 <div class="wrap">
 
-  <h1>📝 Content Generator</h1>
+  <h1>✍️ Content Builder</h1>
+
   <div id="ghostCounts"></div>
 
-<nav id="ghostNav"></nav>
+  <nav id="ghostNav"></nav>
 
   <div class="card form-card">
 
-    <label>Select Idea</label>
+```
+<h2>Select Idea</h2>
 
-    <select id="ideaSelect"></select>
+<select id="ideaSelect"></select>
 
-    <button id="generateContentBtn">
-      Generate Content
-    </button>
+<button id="generateContentBtn">
+  Generate Content
+</button>
 
-    <button id="queueContentBtn">
+<button id="queueContentBtn">
   Add To Queue
-    </button>
-    
+</button>
+```
 
   </div>
 
   <div class="card">
 
-    <h2>Hook</h2>
+```
+<h2>Content Strategy</h2>
 
-    <p id="hookOutput">
-      Select an idea and generate content.
-    </p>
+<pre id="hookOutput" class="content-output">
+```
 
-  </div>
-
-  <div class="card">
-
-    <h2>Caption</h2>
-
-    <p id="captionOutput">
-      Waiting...
-    </p>
+Select an idea and generate content. </pre>
 
   </div>
 
   <div class="card">
 
-    <h2>Hashtags</h2>
+```
+<h2>Caption</h2>
 
-    <p id="hashtagsOutput">
-      Waiting...
-    </p>
+<pre id="captionOutput" class="content-output">
+```
+
+Waiting... </pre>
+
+  </div>
+
+  <div class="card">
+
+```
+<h2>Hashtags</h2>
+
+<pre id="hashtagsOutput" class="content-output">
+```
+
+Waiting... </pre>
 
   </div>
 
 </div>
 
 <script src="/assets/js/storage.js"></script>
+
 <script src="/assets/js/ghost-nav.js"></script>
+
 <script src="/assets/js/ghost-counts.js"></script>
+
 <script src="/assets/js/content.js"></script>
+
 </body>
 </html>
