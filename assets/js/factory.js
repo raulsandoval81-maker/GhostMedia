@@ -4,6 +4,7 @@ const saveFactoryBtn = document.getElementById("saveFactoryBtn");
 const factoryOutput = document.getElementById("factoryOutput");
 
 let factoryIdeas = [];
+let currentWinner = null;
 
 function getWinners() {
   return gmGetIdeas().filter((idea) => idea.status === "WINNER");
@@ -167,12 +168,43 @@ function renderFactoryOutput() {
 <button class="build-carousel-btn">
   📚 Build Carousel
 </button>
-
+<button class="add-planner-btn">
+  ➕ Add To Planner
+</button>
       `;
 
     row
     .querySelector(".build-carousel-btn")
       .addEventListener("click", () => {
+row
+  .querySelector(".add-planner-btn")
+  .addEventListener("click", () => {
+
+    const planner =
+      JSON.parse(
+        localStorage.getItem(
+          "ghost-planner"
+        ) || "[]"
+      );
+
+    planner.push({
+      id: Date.now(),
+      title,
+      niche: winner?.page || "General",
+      createdAt:
+        new Date().toISOString()
+    });
+
+    localStorage.setItem(
+      "ghost-planner",
+      JSON.stringify(planner)
+    );
+
+    alert(
+      `"${title}" added to Planner`
+    );
+
+  });
 
 localStorage.setItem(
   "ghost-carousel-payload",
@@ -211,6 +243,7 @@ generateFactoryBtn.addEventListener("click", () => {
   const winners = getWinners();
   const selectedId = factoryWinner.value;
   const winner = winners.find((w) => String(w.id) === String(selectedId));
+  currentWinner = winner;
 
   factoryIdeas = generateVariations(winner);
   renderFactoryOutput();

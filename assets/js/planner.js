@@ -4,6 +4,9 @@ const plannerOutput =
 const autoPlanBtn =
   document.getElementById("autoPlanBtn");
 
+const GM_PLANNER_KEY =
+  "ghost-planner";
+
 autoPlanBtn?.addEventListener(
   "click",
   buildWeek
@@ -12,6 +15,64 @@ autoPlanBtn?.addEventListener(
 buildWeek();
 
 function buildWeek() {
+
+  const planner =
+    JSON.parse(
+      localStorage.getItem(
+        GM_PLANNER_KEY
+      ) || "[]"
+    );
+
+  plannerOutput.innerHTML = "";
+
+  // REAL PLANNER MODE
+
+  if (planner.length) {
+
+    const slots = [
+      "Mon 6:00 AM",
+      "Mon 6:00 PM",
+      "Tue 6:00 AM",
+      "Tue 6:00 PM",
+      "Wed 6:00 AM",
+      "Wed 6:00 PM",
+      "Thu 6:00 AM",
+      "Thu 6:00 PM",
+      "Fri 6:00 AM",
+      "Fri 6:00 PM"
+    ];
+
+    planner.forEach((item, index) => {
+
+      plannerOutput.innerHTML += `
+        <div class="card">
+
+          <h2>
+            ${slots[index] || "Extra"}
+          </h2>
+
+<div class="page">
+
+  <strong>
+    ${item.title || "Untitled"}
+  </strong>
+
+  <span>
+    (${item.niche || "General"})
+  </span>
+
+</div>
+
+
+        </div>
+      `;
+
+    });
+
+    return;
+  }
+
+  // FALLBACK TEST PLAN
 
   const weekPlan = [
     {
@@ -41,8 +102,6 @@ function buildWeek() {
     }
   ];
 
-  plannerOutput.innerHTML = "";
-
   weekPlan.forEach((slot) => {
 
     plannerOutput.innerHTML += `
@@ -62,7 +121,5 @@ function buildWeek() {
 
       </div>
     `;
-
   });
-
 }
