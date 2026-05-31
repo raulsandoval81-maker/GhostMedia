@@ -2,10 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>GhostMedia Command Center</title>
 
@@ -18,106 +15,79 @@
 
     <h1>👻 GhostMedia Command Center</h1>
 
-    <nav id="ghostNav" class="nav"></nav>
+    <section class="command-columns">
 
-    <section class="card">
+      <div class="command-column card">
+        <h2>🚀 Ghost Loop</h2>
+        <a href="/dashboard/ideas.html">💡 Ideas</a>
+        <a href="/dashboard/content.html">✍️ Content</a>
+        <a href="/dashboard/queue.html">📦 Queue</a>
+        <a href="/dashboard/winners.html">🏆 Winners</a>
+      </div>
 
+      <div class="command-column card">
+        <h2>🧠 Intelligence</h2>
+        <a href="/dashboard/patterns.html">🧠 Patterns</a>
+        <a href="/dashboard/opportunities.html">🔥 Opportunities</a>
+        <a href="/dashboard/briefs.html">📄 Briefs</a>
+        <a href="/dashboard/factory.html">🏭 Factory</a>
+      </div>
+
+      <div class="command-column card">
+        <h2>🛠 Operations</h2>
+        <a href="/dashboard/index.html">🏠 Dashboard</a>
+        <a href="/dashboard/lab.html">🧪 Winner Lab</a>
+        <a href="/dashboard/planner.html">📅 Planner</a>
+        <a href="/image-generator/">🎨 Images</a>
+      </div>
+
+    </section>
+
+    <section class="snapshot-bar card">
       <h2>System Snapshot</h2>
 
-      <div class="stats-grid">
+      <div class="snapshot-stats">
+        <span><strong id="ideaCount">0</strong> Ideas</span>
+        <span><strong id="queueCount">0</strong> Queued</span>
+        <span><strong id="winnerCount">0</strong> Winners</span>
+        <span><strong id="patternCount">0</strong> Patterns</span>
+      </div>
+    </section>
 
-        <div class="stat-card">
-          <h3 id="ideaCount">0</h3>
-          <p>Ideas</p>
+    <section class="dashboard-grid">
+
+      <section class="card dashboard-card">
+        <h2>🏆 Top Winner</h2>
+        <div id="topWinner" class="dashboard-readout">
+          No winner selected
         </div>
+      </section>
 
-        <div class="stat-card">
-          <h3 id="queueCount">0</h3>
-          <p>Queued</p>
+      <section class="card dashboard-card">
+        <h2>🧠 Best Pattern</h2>
+        <div id="topPattern" class="dashboard-readout">
+          No pattern detected
         </div>
+      </section>
 
-        <div class="stat-card">
-          <h3 id="winnerCount">0</h3>
-          <p>Winners</p>
+      <section class="card dashboard-card">
+        <h2>🔥 Best Opportunity</h2>
+        <div id="topOpportunity" class="dashboard-readout">
+          No opportunity detected
         </div>
+      </section>
 
-        <div class="stat-card">
-          <h3 id="patternCount">0</h3>
-          <p>Patterns</p>
+      <section class="card dashboard-card">
+        <h2>📅 Next Up</h2>
+        <div id="weekPlan" class="dashboard-readout">
+          Planner not built yet
         </div>
+      </section>
 
-      </div>
-
-    </section>
-
-    <section class="card">
-
-      <h2>🏆 Top Winner</h2>
-
-      <div id="topWinner" class="dashboard-readout">
-        No winner selected
-      </div>
-
-    </section>
-
-    <section class="card">
-
-      <h2>🧠 Best Pattern</h2>
-
-      <div id="topPattern" class="dashboard-readout">
-        No pattern detected
-      </div>
-
-    </section>
-
-    <section class="card">
-
-      <h2>🔥 Best Opportunity</h2>
-
-      <div id="topOpportunity" class="dashboard-readout">
-        No opportunity detected
-      </div>
-
-    </section>
-
-    <section class="card">
-
-      <h2>📅 This Week</h2>
-
-      <div id="weekPlan" class="dashboard-readout">
-        Planner not built yet
-      </div>
-
-    </section>
-
-    <section class="card">
-
-      <h2>⚡ Quick Actions</h2>
-
-
-<div class="quick-actions">
-
-  <a href="/dashboard/ideas.html">
-    💡<br>
-    Add Idea
-  </a>
-
-  <a href="/dashboard/factory.html">
-    🏭<br>
-    Generate Variations
-  </a>
-
-  <a href="/dashboard/planner.html">
-    📅<br>
-    Build Week
-  </a>
-
-</div>
     </section>
 
   </div>
 
-  <script src="/assets/js/ghost-nav.js"></script>
   <script src="/assets/js/storage.js"></script>
   <script src="/assets/js/dashboard.js"></script>
 

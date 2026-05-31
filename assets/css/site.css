@@ -428,3 +428,46 @@ button{
     font-size: 17px;
   }
 }
+.command-columns{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+
+.command-column{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.command-column h2{
+  margin-bottom:8px;
+}
+
+.command-column a{
+  min-height:80px;
+}
+.ghost-command{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+
+.ghost-column{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.ghost-column h3{
+  margin-bottom:8px;
+}
+
+.ghost-column a{
+  min-height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  border-radius:14px;
+}
