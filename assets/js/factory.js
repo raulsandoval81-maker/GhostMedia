@@ -330,24 +330,27 @@ function addToPlanner(title) {
 function renderFactoryOutput() {
   factoryOutput.innerHTML = "";
 
-  factoryIdeas.forEach(title => {
-    const row = document.createElement("div");
-    row.className = "page";
+factoryIdeas.forEach(title => {
+  const row = document.createElement("div");
+  row.className = "variation-row";
 
-    row.innerHTML = `
-      <strong>${title}</strong>
-      <span>VARIATION</span>
+  row.innerHTML = `
 
-      <button class="build-carousel-btn">
-        📚 Build Carousel
-      </button>
+    <button class="build-carousel-btn">
+      🎠
+    </button>
 
-      <button class="add-planner-btn">
-        ➕ Add To Planner
-      </button>
-    `;
+    <div class="variation-title">
+      ${title}
+    </div>
 
-    row
+    <button class="add-planner-btn">
+      📅
+    </button>
+
+  `;
+
+  row
       .querySelector(".build-carousel-btn")
       .addEventListener("click", () => {
         sendToCarousel(title);

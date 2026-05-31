@@ -588,3 +588,44 @@ button{
   background: rgba(250, 204, 21, 0.16);
   border-color: #facc15;
 }
+.variation-row{
+  display:grid;
+  grid-template-columns:60px 1fr 60px;
+  gap:12px;
+
+  align-items:center;
+
+  margin-bottom:12px;
+  padding:12px 14px;
+
+  background:rgba(20,35,55,.75);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;
+}
+
+.variation-title{
+  font-weight:800;
+  color:#fff;
+  text-align:left;
+}
+
+.build-carousel-btn,
+.add-planner-btn{
+  width:48px;
+  height:48px;
+
+  border:none;
+  border-radius:10px;
+
+  background:#facc15;
+  color:#111;
+
+  font-size:1.2rem;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.build-carousel-btn:hover,
+.add-planner-btn:hover{
+  opacity:.9;
+}
