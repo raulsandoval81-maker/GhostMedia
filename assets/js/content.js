@@ -33,20 +33,23 @@ function loadIdeasIntoSelect() {
 function getContentBlueprint(page) {
   const blueprints = {
     "Wrestling Highlights": {
-      pattern: "Highlight",
-      emotion: "Shock + Replay",
+      postType: "Highlight",
+      pattern: "Replay Moment",
+      emotion: "Shock + Curiosity",
       goal: "Views and shares",
       cta: "Would you rewatch this?",
-      angle: "Turn the moment into a story, not just a clip."
+      angle: "Turn the best moment into a story."
     },
     "Wrestling History": {
-      pattern: "Story",
+      postType: "Story",
+      pattern: "Old School Memory",
       emotion: "Nostalgia + Debate",
       goal: "Comments and saves",
       cta: "Did you ever see this happen?",
       angle: "Compare old-school wrestling to today."
     },
     "MMA Moments": {
+      postType: "Breakdown",
       pattern: "Fight IQ",
       emotion: "Curiosity + Respect",
       goal: "Watch time and comments",
@@ -54,49 +57,56 @@ function getContentBlueprint(page) {
       angle: "Explain the moment casual fans missed."
     },
     "MMA Drama": {
+      postType: "Debate",
       pattern: "Controversy",
-      emotion: "Debate + Reaction",
+      emotion: "Reaction + Opinion",
       goal: "Comments",
       cta: "Whose side are you on?",
       angle: "Frame both sides without overexplaining."
     },
     "Gym Humor": {
-      pattern: "Relatable joke",
+      postType: "Meme",
+      pattern: "Relatable Joke",
       emotion: "Funny + Familiar",
       goal: "Shares and tags",
       cta: "Tag the person who does this.",
       angle: "Make the gym behavior instantly recognizable."
     },
     "Strength Motivation": {
-      pattern: "Discipline",
+      postType: "Motivation",
+      pattern: "Discipline Reminder",
       emotion: "Grit + Focus",
       goal: "Saves",
       cta: "Save this for the next hard day.",
       angle: "Make the boring work feel important."
     },
     "Youth Sports Parents": {
-      pattern: "Parent behavior",
-      emotion: "Relatable + Tension",
+      postType: "Relatable",
+      pattern: "Parent Behavior",
+      emotion: "Recognition + Tension",
       goal: "Comments and shares",
       cta: "Have you seen this parent?",
       angle: "Say the quiet part parents recognize."
     },
     "Combat Sports News": {
-      pattern: "Headline breakdown",
+      postType: "News Breakdown",
+      pattern: "Headline Context",
       emotion: "Curiosity",
       goal: "Clicks and comments",
       cta: "What does this change?",
       angle: "Explain why the headline matters."
     },
     "Wrestling Technique": {
-      pattern: "Coach detail",
+      postType: "Coach Tip",
+      pattern: "Technical Detail",
       emotion: "Useful + Clear",
       goal: "Saves",
       cta: "Save this before practice.",
       angle: "Teach one detail people can use."
     },
     "Underdog Stories": {
-      pattern: "Comeback",
+      postType: "Comeback Story",
+      pattern: "Turning Point",
       emotion: "Belief + Momentum",
       goal: "Shares",
       cta: "Never count someone out.",
@@ -105,7 +115,8 @@ function getContentBlueprint(page) {
   };
 
   return blueprints[page] || {
-    pattern: "General post",
+    postType: "Standard",
+    pattern: "General Post",
     emotion: "Curiosity",
     goal: "Engagement",
     cta: "What do you think?",
@@ -115,17 +126,73 @@ function getContentBlueprint(page) {
 
 function buildCaption(idea, blueprint) {
   const title = idea.title || "This moment";
-  const notes = idea.notes || "";
+  const notes = String(idea.notes || "").trim();
+
+  if (blueprint.postType === "Breakdown") {
+    return `${title}
+
+Most people watched the obvious part.
+
+But the real story is the detail that changed everything.
+
+${notes ? notes + "\n\n" : ""}${blueprint.cta}`;
+  }
+
+  if (blueprint.postType === "Story") {
+    return `${title}
+
+A lot of people forgot how different this used to be.
+
+But if you were around it, you remember.
+
+${notes ? notes + "\n\n" : ""}${blueprint.cta}`;
+  }
+
+  if (blueprint.postType === "Meme") {
+    return `${title}
+
+Every gym has this person.
+
+Some of us have been this person.
+
+${notes ? notes + "\n\n" : ""}${blueprint.cta}`;
+  }
+
+  if (blueprint.postType === "Debate") {
+    return `${title}
+
+There are two sides to this.
+
+And both sides think they are right.
+
+${notes ? notes + "\n\n" : ""}${blueprint.cta}`;
+  }
+
+  if (blueprint.postType === "Coach Tip") {
+    return `${title}
+
+This is the detail that changes the position.
+
+Simple. Boring. Effective.
+
+${notes ? notes + "\n\n" : ""}${blueprint.cta}`;
+  }
+
+  if (blueprint.postType === "Motivation") {
+    return `${title}
+
+Nobody gets better from hype alone.
+
+The boring reps are usually the ones that count.
+
+${notes ? notes + "\n\n" : ""}${blueprint.cta}`;
+  }
 
   return `${title}
 
 ${blueprint.angle}
 
-${notes ? notes + "\n\n" : ""}Pattern: ${blueprint.pattern}
-Emotion: ${blueprint.emotion}
-Goal: ${blueprint.goal}
-
-${blueprint.cta}`;
+${notes ? notes + "\n\n" : ""}${blueprint.cta}`;
 }
 
 function buildContent(idea) {
@@ -136,12 +203,29 @@ function buildContent(idea) {
     ideaId: idea.id,
     title: idea.title,
     page,
+    postType: blueprint.postType,
     pattern: blueprint.pattern,
     angle: blueprint.angle,
     emotion: blueprint.emotion,
     goal: blueprint.goal,
     cta: blueprint.cta,
-    hook: `${idea.title}`,
+    strategy: `Post Type:
+${blueprint.postType}
+
+Pattern:
+${blueprint.pattern}
+
+Angle:
+${blueprint.angle}
+
+Emotion:
+${blueprint.emotion}
+
+Goal:
+${blueprint.goal}
+
+CTA:
+${blueprint.cta}`,
     caption: buildCaption(idea, blueprint),
     hashtags: getHashtags(page),
     status: "ready",
@@ -167,15 +251,7 @@ function getHashtags(page) {
 }
 
 function renderContent(content) {
-  hookOutput.textContent =
-    `${content.title}
-
-Pattern: ${content.pattern}
-Angle: ${content.angle}
-Emotion: ${content.emotion}
-Goal: ${content.goal}
-CTA: ${content.cta}`;
-
+  hookOutput.textContent = content.strategy;
   captionOutput.textContent = content.caption;
   hashtagsOutput.textContent = content.hashtags;
 }
@@ -191,7 +267,6 @@ generateContentBtn.addEventListener("click", () => {
   if (!idea) return;
 
   currentContent = buildContent(idea);
-
   renderContent(currentContent);
 });
 
