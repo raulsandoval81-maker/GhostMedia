@@ -1,92 +1,80 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
 
-<title>Content Builder</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
-<link
-  rel="stylesheet"
-  href="/assets/css/site.css">
+  <title>Content Generator</title>
+
+  <link rel="stylesheet" href="/assets/css/site.css" />
 </head>
 
 <body>
 
-<div class="wrap">
+  <div class="wrap">
 
-  <h1>✍️ Content Builder</h1>
+    <h1>📝 Content Generator</h1>
 
-  <div id="ghostCounts"></div>
+    <div id="ghostCounts"></div>
 
-  <nav id="ghostNav"></nav>
+    <nav id="ghostNav"></nav>
 
-  <div class="card form-card">
+    <div class="card form-card">
 
-```
-<h2>Select Idea</h2>
+      <label for="ideaSelect">
+        Select Idea
+      </label>
 
-<select id="ideaSelect"></select>
+      <select id="ideaSelect"></select>
 
-<button id="generateContentBtn">
-  Generate Content
-</button>
+      <button id="generateContentBtn">
+        Generate Content
+      </button>
 
-<button id="queueContentBtn">
-  Add To Queue
-</button>
-```
+      <button id="queueContentBtn">
+        Add To Queue
+      </button>
 
-  </div>
+    </div>
 
-  <div class="card">
+    <section class="content-builder-grid">
 
-```
-<h2>Content Strategy</h2>
+      <div class="card content-builder-card">
 
-<pre id="hookOutput" class="content-output">
-```
+        <h2>Strategy</h2>
 
-Select an idea and generate content. </pre>
+        <pre id="hookOutput" class="content-output">Select an idea and generate content.</pre>
 
-  </div>
+      </div>
 
-  <div class="card">
+      <div class="card content-builder-card">
 
-```
-<h2>Caption</h2>
+        <h2>Caption</h2>
 
-<pre id="captionOutput" class="content-output">
-```
+        <pre id="captionOutput" class="content-output">Waiting...</pre>
 
-Waiting... </pre>
+      </div>
 
-  </div>
+      <div class="card content-builder-card">
 
-  <div class="card">
+        <h2>Hashtags</h2>
 
-```
-<h2>Hashtags</h2>
+        <pre id="hashtagsOutput" class="content-output">Waiting...</pre>
 
-<pre id="hashtagsOutput" class="content-output">
-```
+      </div>
 
-Waiting... </pre>
+    </section>
 
   </div>
 
-</div>
-
-<script src="/assets/js/storage.js"></script>
-
-<script src="/assets/js/ghost-nav.js"></script>
-
-<script src="/assets/js/ghost-counts.js"></script>
-
-<script src="/assets/js/content.js"></script>
+  <script src="/assets/js/storage.js"></script>
+  <script src="/assets/js/ghost-nav.js"></script>
+  <script src="/assets/js/ghost-counts.js"></script>
+  <script src="/assets/js/content.js"></script>
 
 </body>
 </html>
