@@ -1,4 +1,3 @@
-const factoryGenre = document.getElementById("factoryGenre");
 const factoryWinner = document.getElementById("factoryWinner");
 const generateFactoryBtn = document.getElementById("generateFactoryBtn");
 const saveFactoryBtn = document.getElementById("saveFactoryBtn");
@@ -19,23 +18,6 @@ function getWinnerGenre(winner) {
   return winner?.page || winner?.genre || winner?.category || "General";
 }
 
-function loadFactoryGenres() {
-  if (!factoryGenre) return;
-
-  const winners = getWinners();
-
-  const genres = [
-    ...new Set(
-      winners.map(winner => getWinnerGenre(winner))
-    )
-  ].sort();
-
-  factoryGenre.innerHTML =
-    `<option value="">All Genres</option>` +
-    genres
-      .map(genre => `<option value="${genre}">${genre}</option>`)
-      .join("");
-}
 
 function loadFactoryWinners() {
   let winners = getWinners();
@@ -330,27 +312,25 @@ function addToPlanner(title) {
 function renderFactoryOutput() {
   factoryOutput.innerHTML = "";
 
-factoryIdeas.forEach(title => {
-  const row = document.createElement("div");
-  row.className = "variation-row";
+  factoryIdeas.forEach(title => {
+    const row = document.createElement("div");
+    row.className = "variation-row";
 
-  row.innerHTML = `
+    row.innerHTML = `
+      <button class="build-carousel-btn" title="Build Carousel">
+        🎠
+      </button>
 
-    <button class="build-carousel-btn">
-      🎠
-    </button>
+      <div class="variation-title">
+        ${title}
+      </div>
 
-    <div class="variation-title">
-      ${title}
-    </div>
+      <button class="add-planner-btn" title="Add To Planner">
+        📅
+      </button>
+    `;
 
-    <button class="add-planner-btn">
-      📅
-    </button>
-
-  `;
-
-  row
+    row
       .querySelector(".build-carousel-btn")
       .addEventListener("click", () => {
         sendToCarousel(title);
@@ -365,12 +345,6 @@ factoryIdeas.forEach(title => {
     factoryOutput.appendChild(row);
   });
 }
-
-factoryGenre?.addEventListener("change", () => {
-  loadFactoryWinners();
-  factoryIdeas = [];
-  factoryOutput.innerHTML = "";
-});
 
 factoryWinner?.addEventListener("change", () => {
   const winners = getWinners();
@@ -463,5 +437,4 @@ generateCarouselBtn?.addEventListener("click", () => {
   sendToCarousel(currentWinner.title || "Winning Idea");
 });
 
-loadFactoryGenres();
 loadFactoryWinners();
