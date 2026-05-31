@@ -1,119 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
-<title>GhostMedia Command Center</title>
+  <title>GhostMedia Command Center</title>
 
-<link rel="stylesheet" href="/assets/css/site.css">
+  <link rel="stylesheet" href="/assets/css/site.css" />
 </head>
 
 <body>
 
-<div class="container">
+  <div class="container">
 
-  <h1>👻 GhostMedia Command Center</h1>
+    <h1>👻 GhostMedia Command Center</h1>
 
+    <nav id="ghostNav" class="nav"></nav>
 
-<nav id="ghostNav" class="nav"></nav>
-  <section class="card">
+    <section class="card">
 
-    <h2>System Snapshot</h2>
+      <h2>System Snapshot</h2>
 
-    <div class="stats-grid">
+      <div class="stats-grid">
 
-      <div class="stat-card">
-        <h3 id="ideaCount">0</h3>
-        <p>Ideas</p>
+        <div class="stat-card">
+          <h3 id="ideaCount">0</h3>
+          <p>Ideas</p>
+        </div>
+
+        <div class="stat-card">
+          <h3 id="queueCount">0</h3>
+          <p>Queued</p>
+        </div>
+
+        <div class="stat-card">
+          <h3 id="winnerCount">0</h3>
+          <p>Winners</p>
+        </div>
+
+        <div class="stat-card">
+          <h3 id="patternCount">0</h3>
+          <p>Patterns</p>
+        </div>
+
       </div>
 
-      <div class="stat-card">
-        <h3 id="queueCount">0</h3>
-        <p>Queued</p>
+    </section>
+
+    <section class="card">
+
+      <h2>🏆 Top Winner</h2>
+
+      <div id="topWinner" class="dashboard-readout">
+        No winner selected
       </div>
 
-      <div class="stat-card">
-        <h3 id="winnerCount">0</h3>
-        <p>Winners</p>
+    </section>
+
+    <section class="card">
+
+      <h2>🧠 Best Pattern</h2>
+
+      <div id="topPattern" class="dashboard-readout">
+        No pattern detected
       </div>
 
-      <div class="stat-card">
-        <h3 id="patternCount">0</h3>
-        <p>Patterns</p>
+    </section>
+
+    <section class="card">
+
+      <h2>🔥 Best Opportunity</h2>
+
+      <div id="topOpportunity" class="dashboard-readout">
+        No opportunity detected
       </div>
 
-    </div>
+    </section>
 
-  </section>
+    <section class="card">
 
-  <section class="card">
+      <h2>📅 This Week</h2>
 
-    <h2>🏆 Top Winner</h2>
+      <div id="weekPlan" class="dashboard-readout">
+        Planner not built yet
+      </div>
 
-    <div id="topWinner">
-      No winner selected
-    </div>
+    </section>
 
-  </section>
+    <section class="card">
 
-  <section class="card">
+      <h2>⚡ Quick Actions</h2>
 
-    <h2>🧠 Best Pattern</h2>
+      <div class="quick-actions">
 
-    <div id="topPattern">
-      No pattern detected
-    </div>
+        <a href="/dashboard/ideas.html">
+          💡 Add Idea
+        </a>
 
-  </section>
+        <a href="/dashboard/factory.html">
+          🏭 Generate Variations
+        </a>
 
-  <section class="card">
+        <a href="/dashboard/planner.html">
+          📅 Build Week
+        </a>
 
-    <h2>🔥 Best Opportunity</h2>
+      </div>
 
-    <div id="topOpportunity">
-      No opportunity detected
-    </div>
+    </section>
 
-  </section>
+  </div>
 
-  <section class="card">
-
-    <h2>📅 This Week</h2>
-
-    <div id="weekPlan">
-      Planner not built yet
-    </div>
-
-  </section>
-
-  <section class="card">
-
-    <h2>⚡ Quick Actions</h2>
-
-    <div class="action-grid">
-
-      <a class="btn" href="/dashboard/ideas.html">
-        Add Idea
-      </a>
-
-      <a class="btn" href="/dashboard/factory.html">
-        Generate Variations
-      </a>
-
-      <a class="btn" href="/dashboard/planner.html">
-        Build Week
-      </a>
-
-    </div>
-
-  </section>
-
-</div>
-<script src="/assets/js/ghost-nav.js"></script>
-<script src="/assets/js/ghost-loop.js"></script>
-<script src="/assets/js/storage.js"></script>
-<script src="/assets/js/dashboard.js"></script>
+  <script src="/assets/js/ghost-nav.js"></script>
+  <script src="/assets/js/storage.js"></script>
+  <script src="/assets/js/dashboard.js"></script>
 
 </body>
 </html>
