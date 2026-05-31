@@ -1,33 +1,97 @@
+const factoryGenre = document.getElementById("factoryGenre");
 const factoryWinner = document.getElementById("factoryWinner");
 const generateFactoryBtn = document.getElementById("generateFactoryBtn");
 const saveFactoryBtn = document.getElementById("saveFactoryBtn");
 const factoryOutput = document.getElementById("factoryOutput");
 
+const generateCarouselBtn = document.getElementById("generateCarouselBtn");
+
 let factoryIdeas = [];
 let currentWinner = null;
 
 function getWinners() {
-  return gmGetIdeas().filter((idea) => idea.status === "WINNER");
+  return gmGetIdeas().filter(
+    idea => String(idea.status || "").toUpperCase() === "WINNER"
+  );
+}
+
+function getWinnerGenre(winner) {
+  return winner?.page || winner?.genre || winner?.category || "General";
+}
+
+function loadFactoryGenres() {
+  if (!factoryGenre) return;
+
+  const winners = getWinners();
+
+  const genres = [
+    ...new Set(
+      winners.map(winner => getWinnerGenre(winner))
+    )
+  ].sort();
+
+  factoryGenre.innerHTML =
+    `<option value="">All Genres</option>` +
+    genres
+      .map(genre => `<option value="${genre}">${genre}</option>`)
+      .join("");
 }
 
 function loadFactoryWinners() {
-  const winners = getWinners();
+  let winners = getWinners();
+
+  const selectedGenre = factoryGenre?.value || "";
+
+  if (selectedGenre) {
+    winners = winners.filter(
+      winner => getWinnerGenre(winner) === selectedGenre
+    );
+  }
 
   factoryWinner.innerHTML = winners
-    .map((w) => `<option value="${w.id}">${w.title} — ${w.page}</option>`)
+    .map(winner => {
+      const genre = getWinnerGenre(winner);
+
+      return `
+        <option value="${winner.id}">
+          ${winner.title} — ${genre}
+        </option>
+      `;
+    })
     .join("");
+
+  currentWinner = winners[0] || null;
 }
 
 function generateVariations(winner) {
   if (!winner) return [];
 
-  const page = winner.page || "General";
+  const page = getWinnerGenre(winner);
   const title = winner.title || "Winning Idea";
   const notes = winner.notes || "";
 
   const text = `${title} ${page} ${notes}`.toLowerCase();
 
-  // Parenting Pattern
+  if (
+    page === "Gym Humor" ||
+    text.includes("gym humor") ||
+    text.includes("funny") ||
+    text.includes("comedy") ||
+    text.includes("joke")
+  ) {
+    return [
+      "The Guy Who Treats Warmups Like The Olympics",
+      "Every Gym Has This One Dude",
+      "When Someone Gives Advice Nobody Asked For",
+      "The Loudest Guy In The Gym Is Usually The Tiredest",
+      "That One Person Who Turns Every Drill Into A Competition",
+      "Gym Bro Logic Makes No Sense",
+      "The Fake Coach In Every Weight Room",
+      "When The Warmup Is Harder Than Practice",
+      "Things You Only Hear In Combat Sports Gyms",
+      "The Guy Who Says One More Rep And Lies"
+    ];
+  }
 
   if (
     page === "Youth Sports Parents" ||
@@ -48,8 +112,6 @@ function generateVariations(winner) {
       "When Dad Becomes Assistant Coach"
     ];
   }
-
-  // Wrestling History Pattern
 
   if (
     page === "Wrestling History" ||
@@ -72,13 +134,11 @@ function generateVariations(winner) {
     ];
   }
 
-  // MMA Drama Pattern
-
   if (
     page === "MMA Drama" ||
-    text.includes("mma") ||
-    text.includes("fight") ||
-    text.includes("drama")
+    text.includes("mma drama") ||
+    text.includes("fight drama") ||
+    text.includes("controversy")
   ) {
     return [
       "The Fight Everyone Saw Differently",
@@ -94,7 +154,86 @@ function generateVariations(winner) {
     ];
   }
 
-  // Wrestling Highlights Pattern
+  if (
+    page === "MMA Moments" ||
+    text.includes("mma") ||
+    text.includes("ufc") ||
+    text.includes("fight")
+  ) {
+    return [
+      "The Moment The Fight Changed",
+      "The Exchange Everyone Replayed",
+      "The Corner Advice That Actually Mattered",
+      "The Mistake That Cost The Round",
+      "The Scramble That Decided The Fight",
+      "Why This Finish Was Smarter Than It Looked",
+      "The Fighter Who Stayed Calm Under Fire",
+      "The Sequence Casual Fans Missed",
+      "How One Adjustment Changed Everything",
+      "The Moment Fight IQ Took Over"
+    ];
+  }
+
+  if (
+    page === "Strength Motivation" ||
+    text.includes("strength") ||
+    text.includes("lifting") ||
+    text.includes("motivation")
+  ) {
+    return [
+      "Strength Is Built When Nobody Is Watching",
+      "The Rep You Wanted To Skip Matters",
+      "Strong People Do Boring Work Longer",
+      "Why Motivation Is Not Enough",
+      "Discipline Looks Boring Until It Works",
+      "The Weight Room Exposes Excuses",
+      "Small Wins Become Real Strength",
+      "The Hard Set Builds The Athlete",
+      "Consistency Beats Hype Every Time",
+      "You Do Not Rise To The Goal, You Fall To The Habit"
+    ];
+  }
+
+  if (
+    page === "Combat Sports News" ||
+    text.includes("news") ||
+    text.includes("headline") ||
+    text.includes("combat sports")
+  ) {
+    return [
+      "The Story Behind The Headline",
+      "What This Means For The Division",
+      "The Matchup Nobody Is Talking About",
+      "Why This News Actually Matters",
+      "The Bigger Pattern Behind This Fight",
+      "What Fans Are Missing",
+      "The Decision That Changes The Bracket",
+      "Why This Could Shift Momentum",
+      "The Real Impact Of This Result",
+      "What Coaches Should Notice"
+    ];
+  }
+
+  if (
+    page === "Wrestling Technique" ||
+    text.includes("technique") ||
+    text.includes("setup") ||
+    text.includes("shot") ||
+    text.includes("finish")
+  ) {
+    return [
+      "The Setup Before The Shot Matters Most",
+      "Why This Finish Works",
+      "The Small Detail That Changes The Move",
+      "Most Wrestlers Miss This Position",
+      "The Difference Between Forcing And Setting Up",
+      "How To Win The Hand Fight First",
+      "The Mistake That Kills The Shot",
+      "Why Good Technique Looks Simple",
+      "The Drill That Fixes This Fast",
+      "The Position Coaches Keep Repeating"
+    ];
+  }
 
   if (
     page === "Wrestling Highlights" ||
@@ -116,9 +255,8 @@ function generateVariations(winner) {
     ];
   }
 
-  // Underdog Pattern
-
   if (
+    page === "Underdog Stories" ||
     text.includes("underdog") ||
     text.includes("upset") ||
     text.includes("nobody expected")
@@ -137,8 +275,6 @@ function generateVariations(winner) {
     ];
   }
 
-  // Generic Fallback
-
   return [
     `The Hidden Lesson Behind ${title}`,
     `Why ${title} Hit A Nerve`,
@@ -153,99 +289,104 @@ function generateVariations(winner) {
   ];
 }
 
+function sendToCarousel(title) {
+  localStorage.setItem(
+    "ghost-carousel-payload",
+    JSON.stringify({
+      slide1: title,
+      slide2: "Most people miss this.",
+      slide3: "Here's what actually happens.",
+      slide4: "The lesson is simpler than people think.",
+      slide5: "What do you think?",
+      createdAt: new Date().toISOString()
+    })
+  );
+
+  window.location.href = "/carousel/";
+}
+
+function addToPlanner(title) {
+  const planner = JSON.parse(
+    localStorage.getItem("ghost-planner") || "[]"
+  );
+
+  planner.push({
+    id: Date.now() + Math.random(),
+    title,
+    niche: getWinnerGenre(currentWinner),
+    sourceWinnerId: currentWinner?.id || null,
+    sourceWinnerTitle: currentWinner?.title || "",
+    createdAt: new Date().toISOString()
+  });
+
+  localStorage.setItem(
+    "ghost-planner",
+    JSON.stringify(planner)
+  );
+
+  alert(`"${title}" added to Planner`);
+}
+
 function renderFactoryOutput() {
   factoryOutput.innerHTML = "";
 
-  factoryIdeas.forEach((title) => {
+  factoryIdeas.forEach(title => {
     const row = document.createElement("div");
     row.className = "page";
 
     row.innerHTML = `
       <strong>${title}</strong>
-
       <span>VARIATION</span>
 
-<button class="build-carousel-btn">
-  📚 Build Carousel
-</button>
-<button class="add-planner-btn">
-  ➕ Add To Planner
-</button>
-      `;
+      <button class="build-carousel-btn">
+        📚 Build Carousel
+      </button>
+
+      <button class="add-planner-btn">
+        ➕ Add To Planner
+      </button>
+    `;
 
     row
-    .querySelector(".build-carousel-btn")
+      .querySelector(".build-carousel-btn")
       .addEventListener("click", () => {
-row
-  .querySelector(".add-planner-btn")
-  .addEventListener("click", () => {
+        sendToCarousel(title);
+      });
 
-    const planner =
-      JSON.parse(
-        localStorage.getItem(
-          "ghost-planner"
-        ) || "[]"
-      );
-
-    planner.push({
-      id: Date.now(),
-      title,
-      niche: winner?.page || "General",
-      createdAt:
-        new Date().toISOString()
-    });
-
-    localStorage.setItem(
-      "ghost-planner",
-      JSON.stringify(planner)
-    );
-
-    alert(
-      `"${title}" added to Planner`
-    );
-
-  });
-
-localStorage.setItem(
-  "ghost-carousel-payload",
-  JSON.stringify({
-
-    slide1: title,
-
-    slide2:
-      "Most people miss this.",
-
-    slide3:
-      "Here's what actually happens.",
-
-    slide4:
-      "The lesson is simpler than people think.",
-
-    slide5:
-      "What do you think?",
-
-    createdAt:
-      new Date().toISOString()
-
-  })
-);
-
-window.location.href =
-  "/carousel/";
-
-    });
+    row
+      .querySelector(".add-planner-btn")
+      .addEventListener("click", () => {
+        addToPlanner(title);
+      });
 
     factoryOutput.appendChild(row);
   });
 }
 
+factoryGenre?.addEventListener("change", () => {
+  loadFactoryWinners();
+  factoryIdeas = [];
+  factoryOutput.innerHTML = "";
+});
+
+factoryWinner?.addEventListener("change", () => {
+  const winners = getWinners();
+  const selectedId = factoryWinner.value;
+
+  currentWinner = winners.find(
+    winner => String(winner.id) === String(selectedId)
+  ) || null;
+});
+
 generateFactoryBtn.addEventListener("click", () => {
   const winners = getWinners();
   const selectedId = factoryWinner.value;
-  const winner = winners.find((w) => String(w.id) === String(selectedId));
-  currentWinner = winner;
 
-  factoryIdeas = generateVariations(winner);
+  currentWinner = winners.find(
+    winner => String(winner.id) === String(selectedId)
+  ) || null;
+
+  factoryIdeas = generateVariations(currentWinner);
   renderFactoryOutput();
 });
 
@@ -255,21 +396,17 @@ saveFactoryBtn.addEventListener("click", () => {
   const ideas = gmGetIdeas();
 
   const existingTitles = new Set(
-    ideas.map((idea) =>
+    ideas.map(idea =>
       String(idea.title || "")
         .trim()
         .toLowerCase()
     )
   );
 
-  const winners = getWinners();
-  const selectedId = factoryWinner.value;
-  const winner = winners.find((w) => String(w.id) === String(selectedId));
-
   let saved = 0;
   let skipped = 0;
 
-  factoryIdeas.forEach((title) => {
+  factoryIdeas.forEach(title => {
     const cleanTitle = String(title || "").trim();
     const key = cleanTitle.toLowerCase();
 
@@ -283,10 +420,13 @@ saveFactoryBtn.addEventListener("click", () => {
     ideas.unshift({
       id: Date.now() + Math.random(),
       title: cleanTitle,
-      page: winner?.page || "General",
+      page: getWinnerGenre(currentWinner),
+      genre: getWinnerGenre(currentWinner),
       notes: "Generated by Factory V2 from winning pattern.",
       status: "NEW",
       source: "factory",
+      sourceWinnerId: currentWinner?.id || null,
+      sourceWinnerTitle: currentWinner?.title || "",
       createdAt: new Date().toISOString()
     });
 
@@ -304,62 +444,21 @@ saveFactoryBtn.addEventListener("click", () => {
   window.location.href = "/dashboard/ideas.html";
 });
 
-const generateCarouselBtn =
-  document.getElementById(
-    "generateCarouselBtn"
-  );
+generateCarouselBtn?.addEventListener("click", () => {
+  const winners = getWinners();
+  const selectedId = factoryWinner.value;
 
-generateCarouselBtn?.addEventListener(
-  "click",
-  () => {
+  currentWinner = winners.find(
+    winner => String(winner.id) === String(selectedId)
+  ) || null;
 
-    const winners = getWinners();
-
-    const selectedId =
-      factoryWinner.value;
-
-    const winner =
-      winners.find(
-        (w) =>
-          String(w.id) ===
-          String(selectedId)
-      );
-
-    if (!winner) {
-      alert("Select a winner first.");
-      return;
-    }
-
-    localStorage.setItem(
-      "ghost-carousel-payload",
-      JSON.stringify({
-
-        slide1:
-          winner.title ||
-
-          "Winning Idea",
-
-        slide2:
-          "Most people miss this.",
-
-        slide3:
-          "Here's what actually happens.",
-
-        slide4:
-          "The lesson is simpler than people think.",
-
-        slide5:
-          "What do you think?",
-
-        createdAt:
-          new Date().toISOString()
-
-      })
-    );
-window.location.href =
-  "/carousel/";
-
+  if (!currentWinner) {
+    alert("Select a winner first.");
+    return;
   }
-);
 
+  sendToCarousel(currentWinner.title || "Winning Idea");
+});
+
+loadFactoryGenres();
 loadFactoryWinners();
