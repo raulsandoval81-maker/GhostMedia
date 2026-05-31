@@ -573,4 +573,41 @@ button{
   max-width: 100%;
   min-width: 0;
   box-sizing: border-box;
+}/* FIX: shared Ghost nav must not overflow tool pages */
+
+#ghostNav {
+  width: min(1100px, calc(100vw - 48px));
+  max-width: 100%;
+  margin: 24px auto 32px;
+  box-sizing: border-box;
+}
+
+#ghostNav .ghost-command {
+  width: 100%;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  box-sizing: border-box;
+}
+
+#ghostNav .ghost-column {
+  min-width: 0;
+  width: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+#ghostNav .ghost-column a {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* laptop / narrow screen safety */
+@media (max-width: 900px) {
+  #ghostNav .ghost-command {
+    grid-template-columns: 1fr;
+  }
 }
