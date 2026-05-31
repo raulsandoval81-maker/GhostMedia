@@ -20,15 +20,7 @@ function getWinnerGenre(winner) {
 
 
 function loadFactoryWinners() {
-  let winners = getWinners();
-
-  const selectedGenre = factoryGenre?.value || "";
-
-  if (selectedGenre) {
-    winners = winners.filter(
-      winner => getWinnerGenre(winner) === selectedGenre
-    );
-  }
+  const winners = getWinners();
 
   factoryWinner.innerHTML = winners
     .map(winner => {
