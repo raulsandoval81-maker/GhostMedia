@@ -360,28 +360,71 @@ button{
     min-height: 76px;
     font-size: 19px;
   }
-}#ghostNav {
+}
+/* ==========================
+   GHOST NAV ROWS
+========================== */
+
+#ghostNav {
+  width: 100%;
+  margin: 24px 0 32px;
+}
+
+#ghostNav .ghost-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}
+
+#ghostNav .ghost-flow h3 {
+  margin: 0 0 -6px;
+  font-size: 24px;
+  font-weight: 900;
+  color: #fff;
+}
+
+#ghostNav .ghost-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 14px;
-  margin: 20px 0;
+  width: 100%;
 }
 
-#ghostNav a {
+#ghostNav .ghost-row a {
   display: flex;
   align-items: center;
   justify-content: center;
 
   width: 100%;
-  min-height: 60px;
+  min-height: 70px;
+  padding: 14px;
 
-  border-radius: 14px;
+  background: #64748b;
+  color: #fff;
 
-  font-weight: 700;
+  border-radius: 16px;
+  box-sizing: border-box;
+
   text-decoration: none;
   text-align: center;
+
+  font-size: 20px;
+  font-weight: 900;
 }
-#ghostNav h3,
-#ghostNav .section-title {
-  display: none;
+
+#ghostNav .ghost-row a:hover {
+  opacity: .95;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 800px) {
+  #ghostNav .ghost-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #ghostNav .ghost-row a {
+    min-height: 60px;
+    font-size: 17px;
+  }
 }
