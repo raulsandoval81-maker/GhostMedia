@@ -530,13 +530,61 @@ button{
   width: 100%;
   box-sizing: border-box;
 }
-.wrap,
-.container {
-  width: min(1100px, calc(100% - 32px));
-  max-width: 1100px;
-  margin: 40px auto;
+/* Shared GhostMedia nav on inner pages */
+#ghostNav {
+  width: 100%;
+  max-width: 980px;
+  margin: 24px auto 34px;
+  padding: 0 24px;
+  box-sizing: border-box;
 }
 
-.wrap {
-  padding: 24px;
+#ghostNav .ghost-command {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  align-items: start;
+}
+
+#ghostNav .ghost-column {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+#ghostNav .ghost-column h3 {
+  margin: 0 0 10px;
+  text-align: center;
+  color: #facc15;
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+
+#ghostNav .ghost-column a {
+  width: 100%;
+  min-height: 56px;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 14px;
+  border-radius: 14px;
+
+  background: rgba(20, 35, 55, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  color: #fff;
+  text-decoration: none;
+  font-weight: 800;
+  text-align: center;
+}
+
+#ghostNav .ghost-column a:hover {
+  background: rgba(250, 204, 21, 0.16);
+  border-color: #facc15;
 }
