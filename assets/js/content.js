@@ -1,6 +1,7 @@
 const ideaSelect = document.getElementById("ideaSelect");
 const generateContentBtn = document.getElementById("generateContentBtn");
-const queueContentBtn = document.getElementById("queueContentBtn");
+const factoryContentBtn = document.getElementById("factoryContentBtn");
+
 
 const hookOutput = document.getElementById("hookOutput");
 const captionOutput = document.getElementById("captionOutput");
@@ -270,18 +271,23 @@ generateContentBtn.addEventListener("click", () => {
   renderContent(currentContent);
 });
 
-queueContentBtn.addEventListener("click", () => {
+factoryContentBtn.addEventListener("click", () => {
   if (!currentContent) {
     alert("Generate content first.");
     return;
   }
 
-  gmUpdateIdeaStatus(
-    currentContent.ideaId,
-    "QUEUED"
+  localStorage.setItem(
+    "ghost-factory-payload",
+    JSON.stringify({
+      ...currentContent,
+      source: "content",
+      sentToFactoryAt: new Date().toISOString()
+    })
   );
 
-  window.location.href = "/dashboard/queue.html";
+  window.location.href = "/dashboard/factory.html";
 });
+
 
 loadIdeasIntoSelect();
