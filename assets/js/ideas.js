@@ -3,6 +3,64 @@ const pageInput = document.getElementById("ideaPage");
 const notesInput = document.getElementById("ideaNotes");
 const saveIdeaBtn = document.getElementById("saveIdeaBtn");
 const ideasList = document.getElementById("ideasList");
+const scoutSignals = document.getElementById("scoutSignals");
+
+function renderScoutSignals() {
+  if (!scoutSignals) return;
+
+  const entries =
+    JSON.parse(
+      localStorage.getItem("ghostScoutEntries") || "[]"
+    );
+
+  if (!entries.length) {
+    scoutSignals.innerHTML = `
+      <div class="page-card faded">
+        <h3>No scout signals yet</h3>
+        <p>Scout observations will show here.</p>
+      </div>
+    `;
+    return;
+  }
+
+  scoutSignals.innerHTML = "";
+
+  entries.slice(0, 5).forEach((entry) => {
+    const row = document.createElement("div");
+    row.className = "page-card";
+
+    row.innerHTML = `
+      <h3>${entry.pattern || "Scout Pattern"}</h3>
+      <p>${entry.topic || "No topic"} · ${entry.source || "Unknown source"}</p>
+      <button class="btn use-scout-btn">
+        Use As Idea
+      </button>
+    `;
+
+    row
+      .querySelector(".use-scout-btn")
+      .addEventListener("click", () => {
+        titleInput.value =
+          entry.pattern
+            ? `${entry.pattern}: ${entry.topic || "New Idea"}`
+            : entry.topic || "Scout Idea";
+
+        notesInput.value =
+          entry.notes || "";
+
+        pageInput.value =
+          "Underdog Stories";
+
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      });
+
+    scoutSignals.appendChild(row);
+  });
+}
+
 
 function ideaMatchesPage(idea, selectedPage) {
   return (
@@ -118,4 +176,5 @@ saveIdeaBtn.addEventListener("click", () => {
   renderIdeas();
 });
 
+renderScoutSignals();
 renderIdeas();

@@ -1,0 +1,282 @@
+# GhostMedia Vision
+
+## Purpose
+
+GhostMedia exists to turn observations into content, content into assets, assets into published media, and published media into intelligence.
+
+The goal is not simply to create content.
+
+The goal is to build a self-improving media engine.
+
+---
+
+# Core Loop
+
+Scout
+→ Discover
+→ Ideas
+→ Content
+→ Factory
+→ Carousel
+→ Queue
+→ Posted
+→ Winners
+→ Patterns
+→ Opportunities
+→ Scout
+
+Every stage has one job.
+
+---
+
+# Discovery
+
+### Scout
+
+Capture signals.
+
+Sources:
+
+* competitors
+* trends
+* comments
+* creators
+* news
+* audience behavior
+
+Scout answers:
+
+"What is happening?"
+
+---
+
+### Discover
+
+Interpret signals.
+
+Discover transforms observations into:
+
+* hooks
+* angles
+* themes
+* concepts
+* opportunities
+
+Discover answers:
+
+"What could this become?"
+
+---
+
+### Ideas
+
+Select opportunities.
+
+Ideas is the decision point.
+
+Not every idea moves forward.
+
+Ideas answers:
+
+"What is worth creating?"
+
+---
+
+# Production
+
+### Content
+
+Create the message.
+
+Content turns ideas into:
+
+* hooks
+* captions
+* scripts
+* outlines
+* storytelling
+
+Content answers:
+
+"What are we saying?"
+
+---
+
+### Factory
+
+Create production-ready variations.
+
+Factory produces:
+
+* versions
+* angles
+* formats
+* structures
+
+Factory answers:
+
+"How many ways can we package this?"
+
+---
+
+### Carousel
+
+Package the asset.
+
+Carousel transforms content into:
+
+* slides
+* visual sequences
+* posting assets
+
+Carousel answers:
+
+"What will people see?"
+
+---
+
+### Queue
+
+Stage content.
+
+Queue holds content waiting for publication.
+
+Queue answers:
+
+"What is ready to post?"
+
+---
+
+### Posted
+
+Publish.
+
+Posted represents completed execution.
+
+Posted answers:
+
+"What was shipped?"
+
+---
+
+# Intelligence
+
+### Winners
+
+Track performance.
+
+Winners identifies successful content.
+
+Winners answers:
+
+"What worked?"
+
+---
+
+### Winner Lab
+
+Study successful content.
+
+Winner Lab breaks down:
+
+* hooks
+* structure
+* pacing
+* visuals
+* engagement
+
+Winner Lab answers:
+
+"Why did it work?"
+
+---
+
+### Patterns
+
+Store repeatable success.
+
+Patterns become reusable systems.
+
+Patterns answers:
+
+"What repeats?"
+
+---
+
+### Opportunities
+
+Identify future leverage.
+
+Opportunities converts patterns into future direction.
+
+Opportunities answers:
+
+"What should we do next?"
+
+---
+
+# Operations
+
+### Planner
+
+Schedule work.
+
+### Briefs
+
+Provide instructions.
+
+### Images
+
+Manage visual assets.
+
+### Dashboard
+
+Command center.
+
+---
+
+# AI Role
+
+AI assists Discovery and Production.
+
+AI Scout:
+
+* collects signals
+* identifies patterns
+* suggests opportunities
+
+AI Discover:
+
+* generates concepts
+* expands angles
+* creates variations
+
+AI Production:
+
+* drafts content
+* builds structures
+* generates assets
+
+Humans remain responsible for:
+
+* selection
+* approval
+* publishing
+* direction
+
+---
+
+# Guiding Principle
+
+Capture.
+Interpret.
+Choose.
+Create.
+Package.
+Publish.
+Learn.
+Repeat.
+
+GhostMedia is not a collection of pages.
+
+GhostMedia is a media operating system.

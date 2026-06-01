@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ghost Scout</title>
+
+<link rel="stylesheet" href="./scout.css">
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <h1>🕵️ Scout</h1>
+
+  <p class="sub">
+    Capture signals. Let AI identify patterns.
+  </p>
+
+  <div class="stats-grid">
+
+    <div class="stat-card">
+      <span>Entries</span>
+      <strong id="entryCount">0</strong>
+    </div>
+
+    <div class="stat-card">
+      <span>Patterns</span>
+      <strong id="patternCount">0</strong>
+    </div>
+
+    <div class="stat-card">
+      <span>Sources</span>
+      <strong id="sourceCount">0</strong>
+    </div>
+
+  </div>
+
+  <!-- AI SCOUT -->
+
+  <div class="card">
+
+    <h2>🤖 AI Scout</h2>
+
+    <label>Paste Content</label>
+
+    <textarea
+      id="content"
+      rows="8"
+      placeholder="Paste caption, transcript, article, comment thread, post text..."
+    ></textarea>
+
+    <button id="analyzeBtn">
+      Analyze
+    </button>
+
+    <div id="analysis"></div>
+
+  </div>
+
+  <!-- SCOUT ENTRY -->
+
+  <div class="card">
+
+    <h2>📝 Scout Entry</h2>
+
+    <label>Source Account</label>
+    <input id="source" type="text">
+
+    <label>Topic</label>
+    <input id="topic" type="text">
+
+    <label>Pattern</label>
+    <input id="pattern" type="text">
+
+    <label>Notes</label>
+    <textarea id="notes"></textarea>
+
+    <button id="saveBtn">
+      Save Scout Entry
+    </button>
+
+  </div>
+
+  <!-- RECENT ENTRIES -->
+
+  <div class="card">
+
+    <h2>Recent Entries</h2>
+
+    <div id="entries"></div>
+
+    <a
+      class="handoff-btn"
+      href="/dashboard/ideas.html"
+    >
+      💡 Move To Ideas
+    </a>
+
+  </div>
+
+</div>
+
+<script src="./scout.js"></script>
+
+</body>
+</html>

@@ -8,6 +8,21 @@ const generateCarouselBtn = document.getElementById("generateCarouselBtn");
 let factoryIdeas = [];
 let currentWinner = null;
 
+let factoryPayload =
+  JSON.parse(
+    localStorage.getItem("ghost-factory-payload") || "null"
+  );
+
+  if (factoryPayload && factoryWinner) {
+
+  factoryWinner.innerHTML = `
+    <option value="payload">
+      ${factoryPayload.title} — From Content
+    </option>
+  `;
+
+}
+
 function getWinners() {
   return gmGetIdeas().filter(
     idea => String(idea.status || "").toUpperCase() === "WINNER"
@@ -264,18 +279,66 @@ function generateVariations(winner) {
 }
 
 function sendToCarousel(title) {
-  localStorage.setItem(
-    "ghost-carousel-payload",
-    JSON.stringify({
-      slide1: title,
-      slide2: "Most people miss this.",
-      slide3: "Here's what actually happens.",
-      slide4: "The lesson is simpler than people think.",
-      slide5: "What do you think?",
-      createdAt: new Date().toISOString()
-    })
-  );
 
+  const source =
+    factoryPayload || currentWinner || {};
+
+  const caption =
+    String(source.caption || source.notes || "");
+
+  const captionLines =
+    caption
+      .split("\n")
+      .map(line => line.trim())
+      .filter(Boolean);
+
+  const cta =
+    source.cta || "What do you think?";
+
+localStorage.setItem(
+  "ghost-carousel-payload",
+  JSON.stringify({
+
+    slide1:
+      title || source.title || "Winning Idea",
+
+    slide2:
+      source.angle ||
+      captionLines[0] ||
+      "Set up the story.",
+
+    slide3:
+      source.pattern
+        ? `Pattern: ${source.pattern}`
+        : captionLines[1] ||
+          "Show the turning point.",
+
+    slide4:
+      source.emotion
+        ? `Emotion: ${source.emotion}`
+        : captionLines[2] ||
+          "Make the lesson clear.",
+
+    slide5:
+      cta,
+
+    caption:
+      source.caption || "",
+
+    hashtags:
+      source.hashtags || "",
+
+    strategy:
+      source.strategy || "",
+
+    source:
+      factoryPayload ? "content" : "winner",
+
+    createdAt:
+      new Date().toISOString()
+
+  })
+);
   window.location.href = "/carousel/";
 }
 
@@ -348,6 +411,21 @@ factoryWinner?.addEventListener("change", () => {
 });
 
 generateFactoryBtn.addEventListener("click", () => {
+
+  if (factoryPayload) {
+    factoryIdeas =
+      generateVariations({
+        title: factoryPayload.title,
+        page: factoryPayload.page,
+        genre: factoryPayload.page,
+        category: factoryPayload.page,
+        notes: factoryPayload.caption || factoryPayload.strategy || ""
+      });
+
+    renderFactoryOutput();
+    return;
+  }
+
   const winners = getWinners();
   const selectedId = factoryWinner.value;
 
@@ -357,6 +435,7 @@ generateFactoryBtn.addEventListener("click", () => {
 
   factoryIdeas = generateVariations(currentWinner);
   renderFactoryOutput();
+
 });
 
 saveFactoryBtn.addEventListener("click", () => {
@@ -414,6 +493,14 @@ saveFactoryBtn.addEventListener("click", () => {
 });
 
 generateCarouselBtn?.addEventListener("click", () => {
+
+  if (factoryPayload) {
+    sendToCarousel(
+      factoryPayload.title || "Generated Content"
+    );
+    return;
+  }
+
   const winners = getWinners();
   const selectedId = factoryWinner.value;
 
@@ -426,7 +513,12 @@ generateCarouselBtn?.addEventListener("click", () => {
     return;
   }
 
-  sendToCarousel(currentWinner.title || "Winning Idea");
+  sendToCarousel(
+    currentWinner.title || "Winning Idea"
+  );
+
 });
 
-loadFactoryWinners();
+if (!factoryPayload) {
+  loadFactoryWinners();
+}

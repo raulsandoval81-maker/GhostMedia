@@ -4,33 +4,41 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Content Queue</title>
-<link rel="stylesheet" href="/assets/css/site.css">
-</head>
 
+<link rel="stylesheet" href="/assets/css/site.css">
+
+</head>
 <body>
 
 <div class="wrap">
 
   <h1>📦 Content Queue</h1>
+
   <div id="ghostCounts"></div>
 
-<nav id="ghostNav"></nav>
+  <nav id="ghostNav"></nav>
 
-  <h2>Ready To Queue</h2>
-  <div id="queueReady" class="pages"></div>
+  <section class="card">
+    <h2>Queued</h2>
+    <div id="queueQueued" class="pages"></div>
+  </section>
 
-  <h2>Queued</h2>
-  <div id="queueQueued" class="pages"></div>
+  <section class="card">
+    <h2>Ready To Queue</h2>
+    <div id="queueReady" class="pages"></div>
+  </section>
 
-  <h2>Posted</h2>
-  <div id="queuePosted" class="pages"></div>
+  <section class="card">
+    <h2>Posted</h2>
+    <div id="queuePosted" class="pages"></div>
+  </section>
 
 </div>
 
-<script src="/assets/js/ghost-nav.js"></script>
 <script src="/assets/js/storage.js"></script>
-<script src="/assets/js/queue.js"></script>
 <script src="/assets/js/ghost-counts.js"></script>
+<script src="/assets/js/ghost-nav.js"></script>
+<script src="/assets/js/queue.js"></script>
 
 </body>
 </html>

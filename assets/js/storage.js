@@ -99,3 +99,5 @@ function gmBestPattern() {
 
   return best ? { label: best[0], count: best[1] } : null;
 }
+window.gmGetIdeas = gmGetIdeas;
+window.gmSaveIdeas = gmSaveIdeas;

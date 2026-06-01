@@ -3,32 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!nav) return;
 
   nav.innerHTML = `
-    <section class="ghost-command">
-
-      <div class="ghost-column">
-        <h3>🚀 Production</h3>
-        <a href="/dashboard/ideas.html">💡 Ideas</a>
-        <a href="/dashboard/content.html">✍️ Content</a>
-        <a href="/dashboard/factory.html">🏭 Factory</a>
-        <a href="/dashboard/queue.html">📦 Queue</a>
-      </div>
-
-      <div class="ghost-column">
-        <h3>🧠 Intelligence</h3>
-        <a href="/dashboard/winners.html">🏆 Winners</a>
-        <a href="/dashboard/lab.html">🧪 Winner Lab</a>
-        <a href="/dashboard/patterns.html">🧠 Patterns</a>
-        <a href="/dashboard/opportunities.html">🔥 Opportunities</a>
-      </div>
-
-      <div class="ghost-column">
-        <h3>🛠 Operations</h3>
-        <a href="/dashboard/planner.html">📅 Planner</a>
-        <a href="/dashboard/briefs.html">📄 Briefs</a>
-        <a href="/image-generator/">🎨 Images</a>
-        <a href="/dashboard/index.html">🏠 Dashboard</a>
-      </div>
-
+    <section class="ghost-room-nav">
+      <a href="/dashboard/index.html">← Dashboard</a>
     </section>
   `;
 });
