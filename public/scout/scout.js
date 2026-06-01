@@ -146,6 +146,26 @@ function buildScoutReport(content) {
     };
   }
 
+if (
+  text.includes("fighter") ||
+  text.includes("round") ||
+  text.includes("knockout") ||
+  text.includes("submission") ||
+  text.includes("comeback")
+) {
+  return {
+    topic: "MMA Moments",
+    pattern: "Comeback",
+    emotion: "Momentum Shift",
+    hook: "The fight changed in an instant.",
+    ideas: [
+      "The Comeback After Getting Dropped",
+      "One Round Changed Everything",
+      "How Momentum Swung The Fight"
+    ]
+  };
+}
+
   if (
     text.includes("technique") ||
     text.includes("shot") ||
